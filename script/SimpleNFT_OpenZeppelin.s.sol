@@ -8,8 +8,11 @@ contract SimpleNFT_OpenZeppelinScript is Script {
     function setUp() public {}
 
     function run() public {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        vm.startBroadcast(deployerPrivateKey);
+        // not recommended
+        // uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+        // vm.startBroadcast(deployerPrivateKey);
+
+        vm.startBroadcast();
 
         SimpleNFT_OpenZeppelin simpleNFT_OpenZeppelin = new SimpleNFT_OpenZeppelin(
                 "NFT_test",

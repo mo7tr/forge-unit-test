@@ -48,7 +48,33 @@ $ anvil
 ### Deploy
 
 ```shell
-$ forge script script/SimpleNFT_OpenZeppelin.s.sol:SimpleNFT_OpenZeppelinScript --rpc-url $SEPOLIA_RPC_URL --broadcast --verify -vvvv
+$ forge script script/SimpleNFT_OpenZeppelin.s.sol:SimpleNFT_OpenZeppelinScript --account main --sender <PUBLIC ADDRESS RELATED TO --account> --rpc-url $SEPOLIA_RPC_URL --broadcast --verify -vvvv
+```
+
+```shell
+forge create src/SimpleNFT_OpenZeppelin.sol:SimpleNFT_OpenZeppelin --constructor-args "NFTtest" "NFTt" --account main --rpc-url $SEPOLIA_RPC_URL  --verify
+```
+
+Deploying on Scroll Sepolia testnet:
+
+```shell
+forge script script/SimpleNFT_OpenZeppelin.s.sol:SimpleNFT_OpenZeppelinScript --account main --sender <PUBLIC ADDRESS RELATED TO --account> --rpc-url $SEPOLIA_SCROLL_RPC_URL --legacy --broadcast -vvvvv
+```
+
+Verify on scroll testnet:
+
+    not working waiting on scroll to get an update about it but this should work soon
+
+    could work on other network with proper parameters
+
+```shell
+forge verify-contract <CONTRACT ADDRESS> --constructor-args $(cast abi-encode "constructor(string,string)" "NFT_test" "test") --watch src/SimpleNFT_OpenZeppelin.sol:SimpleNFT_OpenZeppelin --compiler-version v0.8.21+commit.d9974bed --chain-id 534351 --verifier-url $SEPOLIA_SCROLL_VERIFY_URL --verifier blockscout
+```
+
+### Keystore
+
+```shell
+cast wallet import your-account-name --interactive or --private-key or --mnemonic-path
 ```
 
 ### Cast
